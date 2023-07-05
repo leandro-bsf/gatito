@@ -28,8 +28,9 @@ export default function Servicos(){
         <Text>Servicos!</Text>
         <FlatList
         data={servicos}
+        removeClippedSubviews={false}
         renderItem={({item})=> <Item {...item}/>}
-        keyExtractor={(id)=>String(id)}
+        keyExtractor={({id})=>String(id)}
         />
         </SafeAreaView>
       
