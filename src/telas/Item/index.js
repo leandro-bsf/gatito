@@ -36,7 +36,8 @@ export default function Item({nome, preco, descricao}){
         <View style={estilos.valor}>
           <Text style={estilos.descricao}>Quantidade:</Text>
           
-          <CampoInteiro  estilos={estilos.quantidade} valor={quantidade} acao={atualizaQuantidadeTotal}></CampoInteiro>
+         
+          <CampoInteiro estilos={estilos.quantidade} valor={quantidade} acao={atualizaQuantidadeTotal} ></CampoInteiro >
         </View>
         <View style={estilos.valor}>
           <Text style={estilos.descricao}>Total:</Text>
