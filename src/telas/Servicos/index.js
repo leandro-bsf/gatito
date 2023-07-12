@@ -1,6 +1,8 @@
 import  React from 'react';
-import {Text , SafeAreaView, StatusBar , FlatList} from 'react-native';
+import { SafeAreaView, StatusBar , FlatList, KeyboardAvoidingView, Platform} from 'react-native';
 import Item from '../Item';
+import Estiloglobal from '../estilos';
+import TelaPadrao  from '../../componentes/TelaPadrao'
 const servicos = [
     {
       id: 1,
@@ -11,6 +13,7 @@ const servicos = [
     {
       id: 2,
       nome:"vacina V4",
+      preco: 79.90,
       descricao: "uma doce da vacina V4"
     },
   
@@ -23,15 +26,12 @@ const servicos = [
   }
   ];
 export default function Servicos(){
-     return <SafeAreaView>
-       < StatusBar/>
-        <Text>Servicos!</Text>
-        <FlatList
-        data={servicos}
-        removeClippedSubviews={false}
-        renderItem={({item})=> <Item {...item}/>}
-        keyExtractor={({id})=>String(id)}
-        />
-        </SafeAreaView>
+     return <TelaPadrao>
+     <FlatList
+       data={servicos}
+       renderItem={({item}) => <Item {...item}  />}
+       keyExtractor={({id}) => String(id)}
+     />
+   </TelaPadrao>
       
 }
