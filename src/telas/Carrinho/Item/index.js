@@ -1,13 +1,13 @@
 import React, {useState} from 'react';
-import {View ,Text, TouchableOpacity, TextInput} from 'react-native';
+import {View ,Text, TextInput} from 'react-native';
 import estilos from  './estilo';
-import Botao from '../../componentes/Botao'
-import CampoInteiro from '../../componentes/campoInteiro';
+import Botao from '../../../componentes/Botao'
+import CampoInteiro from '../../../componentes/campoInteiro';
 
-export default function Item({nome, preco, descricao}){
-  const [quantidade , setQuantidade ] = useState(1);
-  const [total , setTotal] = useState(preco);
-  const [expandir , setExpnadir] = useState(false);
+export default function Item({nome, preco, descricao, quantidade: quantidadeInicial}){
+  const [quantidade , setQuantidade ] = useState(quantidadeInicial);
+  const [total , setTotal] = useState(preco * quantidadeInicial);
+
   const atualizaQuantidadeTotal =(novaQuantidade) =>{
   setQuantidade(novaQuantidade);
   calculaTotal(novaQuantidade);
@@ -16,12 +16,9 @@ export default function Item({nome, preco, descricao}){
     setTotal(quantidade * preco)
   
   }
-  const inverterExpandir = () =>{
-     setExpnadir(!expandir);
-     atualizaQuantidadeTotal(1);
-  }
+  
   return <>
-  <TouchableOpacity style={estilos.informacao} onPress={inverterExpandir}>
+  <View style={estilos.informacao}>
     <Text style={estilos.nome}>{ nome }</Text>
     <Text style={estilos.descricao}>{ descricao }</Text>
     <Text style={estilos.preco}>{ 
@@ -29,8 +26,8 @@ export default function Item({nome, preco, descricao}){
         style: 'currency', currency: 'BRL'
       }).format(preco)
     }</Text>
-  </TouchableOpacity>
-  {expandir &&
+  </View>
+
     <View style={estilos.carrinho}>
       <View>
         <View style={estilos.valor}>
@@ -48,9 +45,9 @@ export default function Item({nome, preco, descricao}){
           }</Text>
         </View>
       </View>
-      <Botao valor="Adicionar ao Carrinho" acao={() => {}} />
+      <Botao valor="Remover do Carrinho" acao={() => {}} />
     </View>
-  }
+  
   <View style={estilos.divisor} />
 </>
 }
